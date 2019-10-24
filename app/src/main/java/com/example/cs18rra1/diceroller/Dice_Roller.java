@@ -8,11 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Random;
-import java.util.Scanner;
-
 public class Dice_Roller extends AppCompatActivity {
 
     @Override
@@ -53,27 +52,31 @@ public class Dice_Roller extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     public void on_button_click(View view){
         int score = 0;
-        Scanner Scan = new Scanner(System.in);
-        int number_entered = Scan.nextInt();
+
+
         TextView tv = (TextView) this.findViewById(R.id.numberTextView);       //creating relevant text fields for manipulation
         TextView sv = (TextView) this.findViewById(R.id.scoreTextView);
         TextView cv = (TextView) this.findViewById(R.id.congratulationsTextView);
-        TextView ev = (TextView) this.findViewById(R.id.enteredvalueTextView);
+        EditText ev = (EditText) this.findViewById(R.id.enteredvalueTextView);
+
+        int number_entered = Integer.parseInt(ev.getText().toString());
+
         Random r = new Random();
         int number = r.nextInt(6)+1;                    //random number generator for dice roll (the +1 is to ensure that 0 does not come up as 0 is not on a dice
 
         if (number_entered == number)                       //successful/unsuccessful guess logic parameters
         {
             cv.setText("Congratulations :)");
-            score = score + 1;
+            score++;
         } else
         {
-            tv.setText("Good luck next time!");
+            cv.setText("Good luck next time!");
         }
 
-        ev.setText("You entered" + Integer.toString(number_entered));       //outputs (displayed regardless of correct/incorrect guess
+        ev.setText(Integer.toString(number_entered));       //outputs (displayed regardless of correct/incorrect guess
         tv.setText(Integer.toString(number));
         sv.setText(Integer.toString(score));
     }
