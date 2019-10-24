@@ -14,6 +14,8 @@ import android.widget.TextView;
 import java.util.Random;
 public class Dice_Roller extends AppCompatActivity {
 
+    private int score = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +56,6 @@ public class Dice_Roller extends AppCompatActivity {
     }
 
     public void on_button_click(View view){
-        int score = 0;
 
 
         TextView tv = (TextView) this.findViewById(R.id.numberTextView);       //creating relevant text fields for manipulation
